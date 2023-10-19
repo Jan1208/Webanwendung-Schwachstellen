@@ -1,7 +1,9 @@
-import express from 'express';
+import express, { json } from 'express';
 import 'dotenv/config';
 
 import apiRouter from './src/routes/api.js';
+
+// Middleware
 
 // DB-Connection
 import client from './db.js';
@@ -11,6 +13,8 @@ client.connect(function (err) {
 });
 
 const app = express();
+
+app.use(json());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

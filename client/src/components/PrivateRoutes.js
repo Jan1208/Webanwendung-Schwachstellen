@@ -1,36 +1,50 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Outlet, Navigate } from 'react-router-dom'
+import { Outlet, useNavigate  } from 'react-router-dom'
 import request from '../utils/request';
 
 const PrivateRoutes = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
-  const checkTokenValidity = useCallback(async () => {
-    const token = localStorage.getItem("jwt");
-
-    if (token) {
-      // Sende einen API-Aufruf an den Server, um den Token zu überprüfen
-      try {
-        const response = await request('/api/checkToken', 'GET');
-        if (response.status === 200) {
-          setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-        }
-      } catch (error) {
-        setIsAuthenticated(false);
-      }
-    } else {
-      setIsAuthenticated(false);
-    }
-  }, []);
+  
 
   useEffect(() => {
+    const checkTokenValidity = async () => {
+      console.log("Starte tokencheck")
+      const token = localStorage.getItem("jwt");
+  
+      if (token) {
+        // Sende einen API-Aufruf an den Server, um den Token zu überprüfen
+        try {
+          const response = await fetch("http://localhost:8081/api/auth/checkkey", {
+            method: 'GET',
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+          });
+  
+  
+          console.log(response.status)
+          if (response.status === 200) {
+            console.log("Authenticated true")
+            return true
+          } else {
+            navigate("/login")
+          }
+        } catch (error) {
+          navigate("/login")
+        }
+      } else {
+        navigate("/login")
+      }
+    }
+
     checkTokenValidity();
-  }, [checkTokenValidity])
+  }, [navigate])
 
   return(
-    localStorage.getItem("jwt") ? <Outlet/> : <Navigate to="/login"/>
+    <Outlet/> 
   )
 }
 

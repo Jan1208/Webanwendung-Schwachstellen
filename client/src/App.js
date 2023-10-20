@@ -10,6 +10,7 @@ import LoginPage from "./Page/LoginPage";
 import HomePage from "./Page/HomePage";
 import PrivateRoutes from "./components/PrivateRoutes";
 import RegisterPage from "./Page/RegisterPage";
+import PersonalDataPage from "./Page/PersonalDataPage";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/" element={ <HomePage /> } />
+            <Route path="/personal" element={ <PersonalDataPage /> } />
           </Route>
           <Route path="/login" element={ <LoginPage /> } />
           <Route path="/register" element={ <RegisterPage /> } />

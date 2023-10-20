@@ -2,10 +2,12 @@ import express from 'express';
 import client from '../../db.js';
 
 import loginRouter from './auth/index.js';
+import userRouter from './user/index.js';
 
 const router = express.Router();
 const BASE_PATH = '/';
-const AUTH_PATH = 'auth/'
+const AUTH_PATH = 'auth/';
+const USER_PATH = 'user/';
 
 router.get(BASE_PATH, (req, res) => {
   queryDatabase();
@@ -14,6 +16,7 @@ router.get(BASE_PATH, (req, res) => {
 });
 
 router.use(BASE_PATH + AUTH_PATH, loginRouter);
+router.use(BASE_PATH + USER_PATH, userRouter);
 
 function queryDatabase() {
   const query = `

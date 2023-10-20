@@ -43,10 +43,12 @@ router.post(BASE_PATH + LOGIN_PATH, async (req, res) => {
     if (hashedPassword === user.password) {
       // Passwort korrekt, wir sind eingeloggt
 
-      const token = jwt.sign({ username }, "GAAANNNZ GEHEEEIMM")
+      const objectToSign = { username };
+
+      const token = jwt.sign(objectToSign, "GAAANNNZ GEHEEEIMM")
       console.log(token)
 
-      res.send({ success: true, jwt: token });
+      res.send({ success: true, jwt: token, user: objectToSign });
     } else {
       res.send({ success: false, message: "Passwort und Nutzername sind falsch!" });
     }

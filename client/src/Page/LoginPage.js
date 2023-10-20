@@ -26,6 +26,7 @@ const LoginPage = (props) => {
     if (response.success) {
       // jwt abspeichern
       localStorage.setItem("jwt", response.jwt)
+      localStorage.setItem("user", JSON.stringify(response.user))
       setErrorMessage("Login erfolgreich")
     } else {
       // Message anzeigen

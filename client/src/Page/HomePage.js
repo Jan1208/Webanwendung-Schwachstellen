@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from "../components/NavBar";
 
 const HomePage = () => {
 
@@ -8,6 +9,7 @@ const HomePage = () => {
 
   return (
     <>
+      <NavBar />
       <h1>HAAALLLOoo</h1>
     </>
   );

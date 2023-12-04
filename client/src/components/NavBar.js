@@ -11,6 +11,13 @@ const NavBar = () => {
     }
   }
 
+  const handleLogout = () => {
+    // Entferne den JWT-Token aus dem LocalStorage
+    localStorage.removeItem("jwt");
+    // Weiterleitung zur Startseite
+    window.location.href = "/";
+  }
+
   return (<nav>
     <ul>
       <li>
@@ -21,6 +28,9 @@ const NavBar = () => {
       </li>
       <li>
         <Link to={"/user"}>Nutzer</Link>
+      </li>
+      <li>
+      <div onClick={handleLogout}>Logout</div>
       </li>
     </ul>
   </nav>)

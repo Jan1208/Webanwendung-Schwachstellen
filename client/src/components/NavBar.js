@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "./NavBar.css"
+
 const NavBar = () => {
   const getPersonalDataLink = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -18,22 +20,30 @@ const NavBar = () => {
     window.location.href = "/";
   }
 
-  return (<nav>
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to={getPersonalDataLink()}>Meine Daten</Link>
-      </li>
-      <li>
-        <Link to={"/user"}>Nutzer</Link>
-      </li>
-      <li>
-      <div onClick={handleLogout}>Logout</div>
-      </li>
-    </ul>
-  </nav>)
+  return (
+    <nav className="navbar">
+      <ul className="nav-list">
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to={getPersonalDataLink()} className="nav-link">
+            Meine Daten
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/user" className="nav-link">
+            Nutzer
+          </Link>
+        </li>
+        <li className="nav-item logout" onClick={handleLogout}>
+          Logout
+        </li>
+      </ul>
+    </nav>
+  )
 }
 
 

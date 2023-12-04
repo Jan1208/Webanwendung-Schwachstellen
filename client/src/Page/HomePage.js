@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <>
       <NavBar />
-      <h1>HAAALLLOoo</h1>
+      <h1>Eingeloggt</h1>
     </>
   );
 }

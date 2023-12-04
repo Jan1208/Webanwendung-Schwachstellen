@@ -1,52 +1,55 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom"; // Importiere Link
 import request from "../utils/request";
-
-import './LoginPage.css'
+import './LoginPage.css';
 
 const LoginPage = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const [errorMessage, setErrorMessage] = useState(undefined);
 
-  function handleUsernameChange(event) {
-    setUsername(event.target.value)
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
   }
 
-  function handlePasswordChange(event) {
-    setPassword(event.target.value)
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   }
 
-  async function handleLogin (e) {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = await request("/auth/login", "POST", { username, password})
+    const response = await request("/auth/login", "POST", { username, password });
 
     if (response.success) {
-      // jwt abspeichern
-      localStorage.setItem("jwt", response.jwt)
-      localStorage.setItem("user", JSON.stringify(response.user))
-      setErrorMessage("Login erfolgreich")
+      // jwt und Benutzerdaten speichern
+      localStorage.setItem("jwt", response.jwt);
+      localStorage.setItem("user", JSON.stringify(response.user));
+      setErrorMessage("Login erfolgreich");
     } else {
-      // Message anzeigen
-      setErrorMessage(response.message)
+      // Fehlermeldung anzeigen
+      setErrorMessage(response.message);
     }
   }
 
   return (
-    <div>
-      <h1>login</h1>
-      <form>
-        <label>Username:</label>
-        <input type="text" onChange={handleUsernameChange} />
-        <label>Password:</label>
-        <input type="text" onChange={handlePasswordChange} />
-        <button onClick={handleLogin}>Login</button>
-        {errorMessage && <p>{errorMessage}</p>}
+    <div className="login-container">
+      <h1>Login</h1>
+      <form className="login-form">
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input type="text" id="username" onChange={handleUsernameChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" onChange={handlePasswordChange} />
+        </div>
+        <button className="login-button" onClick={handleLogin}>Login</button>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </form>
+      <p className="register-link">Noch keinen Account? <Link to="/register">Registrieren</Link></p>
     </div>
   )
 }
 
-export default LoginPage
+export default LoginPage;

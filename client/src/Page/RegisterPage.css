@@ -1,11 +1,11 @@
-/* LoginPage.css */
+/* RegisterPage.css */
 
-.login-container {
+.register-container {
   max-width: 400px;
   margin: auto;
 }
 
-.login-form {
+.register-form {
   background-color: #f5f5f5;
   /* Material Design Grey Background */
   padding: 20px;
@@ -31,9 +31,9 @@ input {
   border-radius: 4px;
 }
 
-.login-button {
-  background-color: #2196f3;
-  /* Material Design Blue */
+.register-button {
+  background-color: #4caf50;
+  /* Material Design Green */
   color: white;
   padding: 10px;
   border: none;
@@ -42,13 +42,13 @@ input {
   transition: background-color 0.3s ease-in-out;
 }
 
-.login-button:hover {
-  background-color: #1565c0;
-  /* Darker shade of blue on hover */
+.register-button:hover {
+  background-color: #45a049;
+  /* Darker shade of green on hover */
 }
 
-.error-message {
-  color: #dc3545;
-  /* Material Design Red */
+.message {
+  color: #4caf50;
+  /* Material Design Green */
   margin-top: 15px;
 }

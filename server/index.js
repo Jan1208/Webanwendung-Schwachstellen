@@ -25,8 +25,8 @@ app.get('/', (req, res) => {
 
 app.use('/api', apiRouter);
 
-app.listen(process.env.EXPRESS_SERVER_PORT, () => {
-  console.log(`app is listening on port ${process.env.EXPRESS_SERVER_PORT}`);
+app.listen(8080, () => {
+  console.log(`app is listening on port 8080`);
 });
 
 export default app;

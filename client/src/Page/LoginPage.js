@@ -26,6 +26,9 @@ const LoginPage = (props) => {
       localStorage.setItem("jwt", response.jwt);
       localStorage.setItem("user", JSON.stringify(response.user));
       setErrorMessage("Login erfolgreich");
+
+      //Weiterleitung zur Startseite
+      window.location.href = "/";
     } else {
       // Fehlermeldung anzeigen
       setErrorMessage(response.message);

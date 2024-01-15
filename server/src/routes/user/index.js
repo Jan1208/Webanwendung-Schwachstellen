@@ -42,10 +42,11 @@ function getStringForSQL(param) {
 };
 
 router.get(BASE_PATH + LIST_PATH, async (req, res) => {
+  let sql;
   try {
     let { group = "", username = "" } = req.query;
 
-    const sql = `SELECT u.id, u.username, u.address, g.name as group FROM users u, groups g WHERE u.username LIKE '%${getStringForSQL(username)}%' AND g.id = u.groupid AND g.name LIKE '%${getStringForSQL(group)}%' AND g.name != 'SECRET';`
+    sql = `SELECT u.id, u.username, u.address, g.name as group FROM users u, groups g WHERE u.username LIKE '%${getStringForSQL(username)}%' AND g.id = u.groupid AND g.name LIKE '%${getStringForSQL(group)}%' AND g.name != 'SECRET';`
 
     console.log("Ausgeführtes SQL:", sql)
 
@@ -55,7 +56,7 @@ router.get(BASE_PATH + LIST_PATH, async (req, res) => {
 
     res.status(200).send({ error: false, users: result.rows })
   } catch (e) {
-    res.status(500).send({ error: true, message: e.message })
+    res.status(500).send({ error: true, message: e.message + "\n SQL: " + sql })
   }
 
 });

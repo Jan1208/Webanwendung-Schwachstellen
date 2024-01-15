@@ -22,7 +22,7 @@ export default function PersonalDataPage() {
     console.log(userData);
     const result = await request('/user', 'PUT', { username: userData.username, address: userData.address });
 
-    message ? setMessage(result.message) : setMessage('Fehler, bitte kontaktieren Sie einen Administrator.');
+    result.message ? setMessage(result.message) : setMessage('Fehler, bitte kontaktieren Sie einen Administrator.');
   };
 
   useEffect(() => {

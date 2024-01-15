@@ -1,4 +1,4 @@
-const url = "http://localhost:8081/api"
+const url = window._env_.API_URL;
 
 
 const request = async (path, method, body) => {

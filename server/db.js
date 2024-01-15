@@ -1,12 +1,13 @@
 import pg from 'pg';
+import 'dotenv/config';
 const { Client } = pg;
 
 const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'postgres',
-  password: 'example',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 })
 
 export default client;
